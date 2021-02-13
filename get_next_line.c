@@ -6,16 +6,17 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:37:07 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/11 17:14:14 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/13 17:27:38 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* lseek is not allowed
+/*
+** lseek is not allowed
 ** Write a function which returns a line read from a file descriptor
 ** without the /n included
-** start by error checking, then in a while loop 
+** start by error checking, then in a while loop
 */
 
 static int	ft_findnext(char *str)
@@ -30,15 +31,15 @@ static int	ft_findnext(char *str)
 	return (i);
 }
 
-char		*ft_cutnext(char *str)
+char		*ft_staticclean(char **ptr)
 {
-	int		limit;
-	char	*ptr;
+	char	*ret;
 
-	limit = ft_findnext(str);
-	if (!(ptr = malloc(sizeof(char) * (limit + 1))))
+	if (!ptr || !ptr[0])
 		return (NULL);
-	
+	ret = ft_substr(*ptr, ft_findnext(*ptr), ft_strlen(ptr));
+	free(*ptr);
+	return (ret);
 }
 
 int			get_next_line(int fd, char **line)
@@ -46,20 +47,16 @@ int			get_next_line(int fd, char **line)
 	char		data[BUFFER_SIZE + 1];
 	static char	*ptr;
 	int			ret;
-	int			funcstatus;
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, data, 0) < 0)
 		return (-1);
 	while ((ft_findnext(ptr) < 0) && ((ret = read(fd, data, BUFFER_SIZE) > 0)))
-	{
-		data[ret] = '\0';
-		ft_strjoin(ptr, data);
-	}
+		ptr = ft_gnl_strjoin(data, ptr, ret);
 	if ((ft_findnext(ptr)) >= 0)
 	{
-		*line = ft_cutnext(ptr);
-		funcstatus = ft_staticclean(ptr);
-		return (funcstatus);
+		*line = ft_substr(ptr, 0, ft_findnext(ptr));
+		ptr = ft_staticclean(&ptr);
+		return ();
 	}
 	return (-1);
 }
