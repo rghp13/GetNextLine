@@ -22,6 +22,18 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+char	*ft_strdup(const char *s1)
+{
+	int		size;
+	char	*ptr;
+
+	size = ft_strlen(s1);
+	if (!(ptr = malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	ptr = ft_memcpy(ptr, s1, size + 1);
+	return (ptr);
+}
+
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	int		len;

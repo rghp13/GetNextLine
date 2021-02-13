@@ -22,13 +22,17 @@
 static int	ft_findnext(char *str)
 {
 	int i;
+	int flag;
 
 	i = 0;
+	flag = 0;
 	if (!str)
 		return (-1);
-	while (str[i] && str[i] != '\n')
+	while (str[i])
+		if (str[i] == '\n')
+			return (i);
 		i++;
-	return (i);
+	return (-1);
 }
 
 char		*ft_staticclean(char **ptr)
@@ -37,8 +41,9 @@ char		*ft_staticclean(char **ptr)
 
 	if (!ptr || !ptr[0])
 		return (NULL);
-	ret = ft_substr(*ptr, ft_findnext(*ptr), ft_strlen(ptr));
+	ret = ft_substr(*ptr, ft_findnext(*ptr), ft_strlen(*ptr));
 	free(*ptr);
+	*ptr = NULL;
 	return (ret);
 }
 
@@ -56,7 +61,10 @@ int			get_next_line(int fd, char **line)
 	{
 		*line = ft_substr(ptr, 0, ft_findnext(ptr));
 		ptr = ft_staticclean(&ptr);
-		return ();
+		return (1);
 	}
-	return (-1);
+	*line = ft_strdup(ptr);
+	free(ptr);
+	ptr = NULL;
+	return (0)
 }
