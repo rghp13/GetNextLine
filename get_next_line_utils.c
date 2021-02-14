@@ -34,13 +34,13 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_gnl_strjoin(char **s1, const char *s2)
 {
 	int		len;
 	char	*ptr;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (*s1 == NULL)
+		return (ft_strdup(s2));
 	len = ft_strlen(s1) + ft_strlen(s2);
 	if (!(ptr = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
