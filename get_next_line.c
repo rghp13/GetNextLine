@@ -6,7 +6,7 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:37:07 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/13 17:27:38 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/14 16:44:30 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 static int	ft_findnext(char *str)
 {
 	int i;
-	int flag;
 
 	i = 0;
-	flag = 0;
 	if (!str)
 		return (-1);
 	while (str[i])
+	{
 		if (str[i] == '\n')
 			return (i);
 		i++;
+	}
 	return (-1);
 }
 
@@ -41,7 +41,7 @@ char		*ft_staticclean(char **ptr)
 
 	if (!ptr || !ptr[0])
 		return (NULL);
-	ret = ft_substr(*ptr, ft_findnext(*ptr), ft_strlen(*ptr));
+	ret = ft_substr(*ptr, (ft_findnext(*ptr) + 1), ft_strlen(*ptr));
 	free(*ptr);
 	*ptr = NULL;
 	return (ret);
@@ -69,5 +69,5 @@ int			get_next_line(int fd, char **line)
 	*line = ft_strdup(ptr);
 	free(ptr);
 	ptr = NULL;
-	return (0)
+	return (0);
 }
