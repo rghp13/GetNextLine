@@ -55,7 +55,7 @@ int			get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, data, 0) < 0)
 		return (-1);
-	while ((ft_findnext(ptr) < 0) && ((ret = read(fd, data, BUFFER_SIZE) > 0)))
+	while ((ft_findnext(ptr) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
 	{
 		data[ret] = '\0';
 		ptr = ft_gnl_strjoin(&ptr, data);

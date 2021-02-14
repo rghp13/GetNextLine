@@ -25,7 +25,7 @@ int	main(void)
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, db);
-		printf("Return value is: %d\n%s\n", ret, *db);
+		printf("%s\n", *db);
 		free(db[0]);
 		db[0] = NULL;
 	}
