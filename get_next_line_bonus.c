@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:37:07 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 14:27:41 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:34:16 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	ft_findnext(char *str)
 {
@@ -28,7 +28,7 @@ static int	ft_findnext(char *str)
 	return (-1);
 }
 
-static char		*ft_staticclean(char **ptr)
+static char	*ft_staticclean(char **ptr)
 {
 	char	*ret;
 

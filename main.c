@@ -6,7 +6,7 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:18:58 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/14 16:28:11 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 13:37:13 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 
 	db = &ptr;
 	ret = 1;
-	fd = open("hello.txt", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, db);
@@ -29,5 +29,8 @@ int	main(void)
 		free(db[0]);
 		db[0] = NULL;
 	}
+	close(fd);
+	while (1)
+		ret++;
 	return (0);
 }
