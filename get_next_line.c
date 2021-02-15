@@ -6,7 +6,7 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:37:07 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 15:57:31 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 17:11:00 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_fnext(char *str)
 	return (-1);
 }
 
-static char		*ft_staticclean(char **ptr)
+static char	*ft_staticclean(char **ptr)
 {
 	char	*ret;
 
