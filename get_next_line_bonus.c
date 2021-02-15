@@ -6,13 +6,13 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:37:07 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 15:09:31 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 16:13:20 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static int	ft_findnext(char *str)
+static int	ft_fnext(char *str)
 {
 	int i;
 
@@ -28,13 +28,13 @@ static int	ft_findnext(char *str)
 	return (-1);
 }
 
-static char	*ft_staticclean(char **ptr)
+static char	*ft_staticclean(char **ptr, int fd)
 {
 	char	*ret;
 
 	if (!ptr || !ptr[0])
 		return (NULL);
-	ret = ft_substr(*ptr, (ft_findnext(*ptr) + 1), ft_strlen(*ptr));
+	ret = ft_substr(*ptr, (ft_fnext(*ptr) + 1), ft_strlen(*ptr));
 	free(*ptr);
 	*ptr = NULL;
 	return (ret);
@@ -48,19 +48,19 @@ int			get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, data, 0) < 0)
 		return (-1);
-	while ((ft_findnext(ptr[fd]) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
+	while ((ft_fnext(ptr[fd]) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
 	{
 		data[ret] = '\0';
-		ptr[fd] = ft_gnl_strjoin(ptr[fd], data);
+		ptr[fd] = ft_gnl_strjoin(ptr, data, fd);
 	}
-	if ((ft_findnext(ptr[fd])) >= 0)
+	if ((ft_fnext(ptr[fd])) >= 0)
 	{
-		*line = ft_substr(ptr[fd], 0, ft_findnext(ptr[fd]));
-		ptr = ft_staticclean(&ptr);
+		*line = ft_substr(ptr[fd], 0, ft_fnext(ptr[fd]));
+		ptr[fd] = ft_staticclean(ptr, fd);
 		return (1);
 	}
-	*line = ft_strdup(ptr);
-	free(ptr);
-	ptr = NULL;
+	*line = ft_strdup(ptr[fd]);
+	free(ptr[fd]);
+	ptr[fd] = NULL;
 	return (0);
 }

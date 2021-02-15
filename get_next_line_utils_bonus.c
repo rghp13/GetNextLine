@@ -6,7 +6,7 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:39:28 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 14:33:13 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 16:13:04 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-char	*ft_gnl_strjoin(char **s1, const char *s2)
+char	*ft_gnl_strjoin(char **s1, const char *s2, int fd)
 {
 	int		len;
 	char	*ptr;
 
-	if (*s1 == NULL)
+	if (s1[fd] == NULL)
 		return (ft_strdup(s2));
-	len = ft_strlen(*s1) + ft_strlen(s2);
+	len = ft_strlen(s1[fd]) + ft_strlen(s2);
 	if (!(ptr = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	ft_memcpy(ptr, *s1, ft_strlen(*s1));
-	ft_memcpy(ptr + ft_strlen(*s1), s2, ft_strlen(s2));
+	ft_memcpy(ptr, s1[fd], ft_strlen(s1[fd]));
+	ft_memcpy(ptr + ft_strlen(s1[fd]), s2, ft_strlen(s2));
 	ptr[len] = '\0';
-	free(*s1);
-	*s1 = NULL;
+	free(s1[fd]);
+	s1[fd] = NULL;
 	return (ptr);
 }
 

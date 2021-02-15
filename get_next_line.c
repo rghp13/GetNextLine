@@ -6,13 +6,13 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:37:07 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 14:27:41 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 15:57:31 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	ft_findnext(char *str)
+static int	ft_fnext(char *str)
 {
 	int i;
 
@@ -34,7 +34,7 @@ static char		*ft_staticclean(char **ptr)
 
 	if (!ptr || !ptr[0])
 		return (NULL);
-	ret = ft_substr(*ptr, (ft_findnext(*ptr) + 1), ft_strlen(*ptr));
+	ret = ft_substr(*ptr, (ft_fnext(*ptr) + 1), ft_strlen(*ptr));
 	free(*ptr);
 	*ptr = NULL;
 	return (ret);
@@ -48,14 +48,14 @@ int			get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, data, 0) < 0)
 		return (-1);
-	while ((ft_findnext(ptr) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
+	while ((ft_fnext(ptr) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
 	{
 		data[ret] = '\0';
 		ptr = ft_gnl_strjoin(&ptr, data);
 	}
-	if ((ft_findnext(ptr)) >= 0)
+	if ((ft_fnext(ptr)) >= 0)
 	{
-		*line = ft_substr(ptr, 0, ft_findnext(ptr));
+		*line = ft_substr(ptr, 0, ft_fnext(ptr));
 		ptr = ft_staticclean(&ptr);
 		return (1);
 	}

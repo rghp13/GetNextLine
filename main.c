@@ -6,29 +6,32 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:18:58 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 15:09:33 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 16:50:44 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	main(void)
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
+	int		fd3;
+	int		fd4;
 	int		ret;
 	char	*ptr;
 	char	**db;
 
 	db = &ptr;
 	ret = 1;
-	fd = open("test.txt", O_RDONLY);
-	while (ret > 0)
-	{
-		ret = get_next_line(fd, db);
-		printf("%s\n", *db);
-		free(db[0]);
-		db[0] = NULL;
-	}
-	close(fd);
+	fd1 = open("test1.txt", O_RDONLY);
+	fd2 = open("test2.txt", O_RDONLY);
+	fd3 = open("test3.txt", O_RDONLY);
+	fd4 = open("test4.txt", O_RDONLY);
+	while ()
+	ret = get_next_line(fd1, db);
+	printf("Return value is %d\n%s\n", ret, ptr);
+	free(ptr);
+
 	return (0);
 }
