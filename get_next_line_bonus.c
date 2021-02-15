@@ -6,7 +6,7 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:37:07 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 14:34:16 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 15:09:31 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ static char	*ft_staticclean(char **ptr)
 int			get_next_line(int fd, char **line)
 {
 	char		data[BUFFER_SIZE + 1];
-	static char	*ptr;
+	static char	*ptr[FDLIMIT];
 	int			ret;
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, data, 0) < 0)
 		return (-1);
-	while ((ft_findnext(ptr) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
+	while ((ft_findnext(ptr[fd]) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
 	{
 		data[ret] = '\0';
-		ptr = ft_gnl_strjoin(&ptr, data);
+		ptr[fd] = ft_gnl_strjoin(ptr[fd], data);
 	}
-	if ((ft_findnext(ptr)) >= 0)
+	if ((ft_findnext(ptr[fd])) >= 0)
 	{
-		*line = ft_substr(ptr, 0, ft_findnext(ptr));
+		*line = ft_substr(ptr[fd], 0, ft_findnext(ptr[fd]));
 		ptr = ft_staticclean(&ptr);
 		return (1);
 	}

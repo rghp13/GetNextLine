@@ -6,7 +6,7 @@
 /*   By: rponsonn <rponsonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:18:58 by rponsonn          #+#    #+#             */
-/*   Updated: 2021/02/15 13:37:13 by rponsonn         ###   ########.fr       */
+/*   Updated: 2021/02/15 15:09:33 by rponsonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ int	main(void)
 		db[0] = NULL;
 	}
 	close(fd);
-	while (1)
-		ret++;
 	return (0);
 }
