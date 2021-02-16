@@ -48,6 +48,9 @@ int			get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, data, 0) < 0)
 		return (-1);
+	ret = read(fd, data, BUFFER_SIZE);
+	data[ret] = '\0';
+	ptr = ft_gnl_strjoin(&ptr, data);
 	while ((ft_fnext(ptr) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
 	{
 		data[ret] = '\0';

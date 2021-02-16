@@ -31,8 +31,11 @@ int	main(void)
 	while (ret > 0)
 	{
 		ret = get_next_line(fd1, db);
-		printf("Return value is %d\n%s\n", ret, ptr);
-		free(ptr);
+		if (ret >= 0)
+		{
+			printf("Return value is %d\n%s\n", ret, ptr);
+			free(ptr);
+		}
 	}
 
 	return (0);

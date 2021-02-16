@@ -34,9 +34,9 @@ static char	*ft_staticclean(char **ptr, int fd)
 
 	if (!ptr || !ptr[0])
 		return (NULL);
-	ret = ft_substr(*ptr, (ft_fnext(*ptr) + 1), ft_strlen(*ptr));
-	free(*ptr);
-	*ptr = NULL;
+	ret = ft_substr(ptr[fd], (ft_fnext(ptr[fd]) + 1), ft_strlen(ptr[fd]));
+	free(ptr[fd]);
+	ptr[fd] = NULL;
 	return (ret);
 }
 
@@ -48,6 +48,9 @@ int			get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, data, 0) < 0)
 		return (-1);
+	ret = read(fd, data, BUFFER_SIZE);
+	data[ret] = '\0';
+	ptr[fd] = ft_gnl_strjoin(ptr, data, fd);
 	while ((ft_fnext(ptr[fd]) < 0) && ((ret = read(fd, data, BUFFER_SIZE)) > 0))
 	{
 		data[ret] = '\0';
