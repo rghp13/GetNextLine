@@ -32,7 +32,7 @@ static char	*ft_staticclean(char **ptr, int fd)
 {
 	char	*ret;
 
-	if (!ptr || !ptr[0])
+	if (!ptr || !ptr[fd])
 		return (NULL);
 	ret = ft_substr(ptr[fd], (ft_fnext(ptr[fd]) + 1), ft_strlen(ptr[fd]));
 	free(ptr[fd]);

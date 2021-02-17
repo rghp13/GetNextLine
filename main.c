@@ -25,6 +25,7 @@ int	main(void)
 	db = &ptr;
 	ret = 1;
 	fd1 = open("test1.txt", O_RDONLY);
+	printf("The FD is :%d\n", fd1);
 /*	fd2 = open("test2.txt", O_RDONLY);
 	fd3 = open("test3.txt", O_RDONLY);
 	fd4 = open("test4.txt", O_RDONLY);*/
